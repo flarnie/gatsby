@@ -17,7 +17,14 @@ function reportFailure(msg, err: Error) {
   )
 }
 
-module.exports = async function build(program: any) {
+type BuildArgs = {
+  directory: string,
+  sitePackageJson: object,
+  browserslist: string[],
+  prefixPaths: boolean
+};
+
+module.exports = async function build(program: BuildArgs) {
   const { graphqlRunner } = await bootstrap(program)
   // Copy files from the static directory to
   // an equivalent static directory within public.
